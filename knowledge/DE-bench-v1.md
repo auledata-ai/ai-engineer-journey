@@ -44,3 +44,27 @@ Isso define a política de roteamento: barato por padrão, escalar quando a vali
 - Adicionar coluna de modelos pagos quando houver chave (código pronto).
 - Mais tarefas: PySpark (precisa Java), Delta MERGE, text-to-SQL com schema grande, explicação de erro.
 - Rodar 3x por tarefa e reportar variância. Uma rodada é anedota.
+
+## Rodada 2: modelos pagos entram (2026-09-11)
+
+| modelo | pass | tokens out | latência | custo (11 tarefas) |
+|---|---|---|---|---|
+| qwen3:8b | 82% | 75 | 2,9 s | 0 |
+| qwen3:8b + think | 91% | 938 | 25,6 s | 0 |
+| llama3.1:8b | 82% | 83 | 2,9 s | 0 |
+| claude-haiku-4-5 | **100%** | 108 | **2,0 s** | $0,008 |
+| claude-sonnet-5 | **100%** | 136 | 2,3 s | $0,022 |
+| claude-opus-5 | 91% | 155 | 3,0 s | $0,059 |
+
+### Lições
+1. **Haiku é o vencedor por custo-benefício.** 100% de acerto, o mais rápido de todos, menos de 1 centavo pelas 11 tarefas.
+   Para SQL e pandas de complexidade normal, não há motivo para pagar Sonnet ou Opus.
+2. **Opus errou uma tarefa que Haiku acertou.** Modelo maior não é monotonicamente melhor em tarefa simples.
+   O erro foi de sintaxe do dialeto DuckDB (BinderException), o mesmo tipo que derrubou o Qwen. Uma rodada só: pode ser ruído. Rodar 3x antes de concluir.
+3. **Local vs pago no mesmo eixo.** 8B local: 82% a custo zero e 3 s. Haiku: 100% a 0,07 centavo por tarefa e 2 s.
+   A diferença de 18 pontos custa menos de 1 centavo. O argumento a favor do local passa a ser privacidade ou volume gigante, não dinheiro.
+4. **Qwen com raciocínio empata com Opus em acerto**, mas leva 10x mais tempo. Raciocínio local é um substituto lento, não barato.
+
+### Frase para entrevista
+"No meu benchmark de engenharia de dados, Haiku acertou 100% a menos de 1 centavo por 11 tarefas e foi o mais rápido.
+Um 8B local ficou em 82%. A regra que tirei: comece pelo menor modelo pago, meça, e só suba quando o eval mostrar falha."

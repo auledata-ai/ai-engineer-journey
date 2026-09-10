@@ -93,8 +93,11 @@ def run_pair(gen: ModelSpec, rev: ModelSpec, task) -> Row:
     verdict = review["verdict"]
 
     final_code = code
-    if verdict == "reject" and review.get("fixed_code"):
-        final_code = extract_code(review["fixed_code"], task.lang)
+    fixed = review.get("fixed_code")
+    if verdict == "reject" and fixed:
+        # modelos as vezes devolvem o codigo como lista/dict em vez de string
+        fixed = fixed if isinstance(fixed, str) else json.dumps(fixed, ensure_ascii=False)
+        final_code = extract_code(fixed, task.lang)
     pass_after, note = task.check(f"```{task.lang}\n{final_code}\n```")
 
     reviewer_correct = (verdict == "approve" and pass_before) or (verdict == "reject" and not pass_before)
