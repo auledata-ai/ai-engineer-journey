@@ -26,6 +26,20 @@ def extract_code(text: str, lang: str) -> str:
     return text.strip()
 
 
+def _norm_value(v):
+    """Compara por valor, nao por representacao: 200 == 200.00, DATE == TIMESTAMP a meia-noite."""
+    import datetime as dt
+    from decimal import Decimal
+
+    if isinstance(v, dt.datetime):
+        return v.date().isoformat() if v.time() == dt.time() else v.isoformat()
+    if isinstance(v, dt.date):
+        return v.isoformat()
+    if isinstance(v, (int, float, Decimal)) and not isinstance(v, bool):
+        return round(float(v), 6)
+    return str(v)
+
+
 def sql_matches(model_sql: str, expected_sql: str) -> tuple[bool, str]:
     con = fresh_connection()
     try:
@@ -35,7 +49,9 @@ def sql_matches(model_sql: str, expected_sql: str) -> tuple[bool, str]:
         return False, f"erro ao executar: {type(e).__name__}: {str(e)[:120]}"
     finally:
         con.close()
-    norm = lambda rows: sorted(tuple(str(v) for v in r) for r in rows)  # noqa: E731
+    def norm(rows):
+        return sorted(tuple(_norm_value(v) for v in r) for r in rows)
+
     if norm(got) == norm(expected):
         return True, "ok"
     return False, f"resultado diferente: esperado {len(expected)} linhas, obtido {len(got)}"
@@ -110,7 +126,7 @@ T_SQL_LATEST = _sql_task(
 
 T_SQL_RUNNING = _sql_task(
     "sql_running_total_by_month",
-    "o total mensal de pedidos 'completed' e o acumulado ao longo dos meses. "
+    "a soma de amount dos pedidos 'completed' por mes e a soma acumulada ao longo dos meses. "
     "Colunas: month (primeiro dia do mes, tipo DATE), monthly_total, running_total, ordenado por month.",
     "SELECT month, monthly_total, SUM(monthly_total) OVER (ORDER BY month) AS running_total FROM "
     "(SELECT DATE_TRUNC('month', order_date)::DATE AS month, SUM(amount) AS monthly_total FROM orders "

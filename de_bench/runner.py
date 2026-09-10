@@ -33,6 +33,7 @@ class Run:
     cost_usd: float
     latency_ms: int
     stop_reason: str
+    output: str
 
 
 def run_task(spec: ModelSpec, task: Task) -> Run:
@@ -42,7 +43,7 @@ def run_task(spec: ModelSpec, task: Task) -> Run:
     latency = round((time.perf_counter() - start) * 1000)
     passed, reason = task.check(text)
     return Run(spec.label, task.id, task.category, passed, reason, tin, tout,
-               round(spec.cost(tin, tout), 6), latency, stop)
+               round(spec.cost(tin, tout), 6), latency, stop, text)
 
 
 def summarize(runs: list[Run]) -> str:

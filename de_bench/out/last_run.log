@@ -1,0 +1,58 @@
+qwen3:8b         sql_total_by_country                 pass out=   62  11286ms  ok
+qwen3:8b         sql_latest_order_per_customer        pass out=   93   2465ms  ok
+qwen3:8b         sql_running_total_by_month           FAIL out=   85   2248ms  erro ao executar: BinderException: Binder Error: c
+qwen3:8b         sql_customers_without_completed_orders FAIL out=   56   1555ms  resultado diferente: esperado 2 linhas, obtido 0
+qwen3:8b         sql_top2_orders_per_customer         pass out=   75   2026ms  ok
+qwen3:8b         sql_reconcile_order_totals           pass out=   80   2197ms  ok
+qwen3:8b         sql_fix_duplicated_join              pass out=   51   1508ms  ok
+qwen3:8b         py_dedup_keep_latest                 pass out=   43   1250ms  ok
+qwen3:8b         py_flatten_nested_orders             pass out=  117   3142ms  ok
+qwen3:8b         py_fix_date_parsing                  pass out=   63   1891ms  ok
+qwen3:8b         dq_rules_from_profile                pass out=  103   2903ms  ok
+qwen3:8b+think   sql_total_by_country                 pass out=  404   9974ms  ok
+qwen3:8b+think   sql_latest_order_per_customer        pass out=  649  16040ms  ok
+qwen3:8b+think   sql_running_total_by_month           pass out=  794  20163ms  ok
+qwen3:8b+think   sql_customers_without_completed_orders pass out= 1159  29029ms  ok
+qwen3:8b+think   sql_top2_orders_per_customer         pass out= 1490  37859ms  ok
+qwen3:8b+think   sql_reconcile_order_totals           FAIL out=  675  17226ms  erro ao executar: BinderException: Binder Error: c
+qwen3:8b+think   sql_fix_duplicated_join              pass out=  493  14332ms  ok
+qwen3:8b+think   py_dedup_keep_latest                 pass out= 1081  31142ms  ok
+qwen3:8b+think   py_flatten_nested_orders             pass out= 1126  32762ms  ok
+qwen3:8b+think   py_fix_date_parsing                  pass out= 1202  34693ms  ok
+qwen3:8b+think   dq_rules_from_profile                pass out= 1245  31220ms  ok
+llama3.1:8b      sql_total_by_country                 pass out=   63   9807ms  ok
+llama3.1:8b      sql_latest_order_per_customer        pass out=   88   2068ms  ok
+llama3.1:8b      sql_running_total_by_month           FAIL out=  111   2581ms  resultado diferente: esperado 4 linhas, obtido 4
+llama3.1:8b      sql_customers_without_completed_orders pass out=   44   1053ms  ok
+llama3.1:8b      sql_top2_orders_per_customer         pass out=  122   2847ms  ok
+llama3.1:8b      sql_reconcile_order_totals           pass out=   80   1947ms  ok
+llama3.1:8b      sql_fix_duplicated_join              pass out=   51   1435ms  ok
+llama3.1:8b      py_dedup_keep_latest                 pass out=   41   1129ms  ok
+llama3.1:8b      py_flatten_nested_orders             pass out=  100   2538ms  ok
+llama3.1:8b      py_fix_date_parsing                  FAIL out=   45   1354ms  esperado datetime.datetime(2025, 9, 10, 0, 0), obt
+llama3.1:8b      dq_rules_from_profile                pass out=  164   3990ms  ok
+
+## Score por modelo
+
+| modelo | pass | tokens out (media) | latencia ms (media) | custo total USD |
+|---|---|---|---|---|
+| qwen3:8b | 9/11 (82%) | 75 | 2952 | 0.0000 |
+| qwen3:8b+think | 10/11 (91%) | 938 | 24949 | 0.0000 |
+| llama3.1:8b | 9/11 (82%) | 83 | 2795 | 0.0000 |
+
+## Tarefa x modelo
+
+| tarefa | qwen3:8b | qwen3:8b+think | llama3.1:8b |
+|---|---|---|---|
+| sql_total_by_country | pass | pass | pass |
+| sql_latest_order_per_customer | pass | pass | pass |
+| sql_running_total_by_month | FAIL (erro ao executar: BinderException: Binde) | pass | FAIL (resultado diferente: esperado 4 linhas, ) |
+| sql_customers_without_completed_orders | FAIL (resultado diferente: esperado 2 linhas, ) | pass | pass |
+| sql_top2_orders_per_customer | pass | pass | pass |
+| sql_reconcile_order_totals | pass | FAIL (erro ao executar: BinderException: Binde) | pass |
+| sql_fix_duplicated_join | pass | pass | pass |
+| py_dedup_keep_latest | pass | pass | pass |
+| py_flatten_nested_orders | pass | pass | pass |
+| py_fix_date_parsing | pass | pass | FAIL (esperado datetime.datetime(2025, 9, 10, ) |
+| dq_rules_from_profile | pass | pass | pass |
+
