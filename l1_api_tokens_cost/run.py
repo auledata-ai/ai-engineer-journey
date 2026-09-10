@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 OUT_DIR = Path(__file__).parent / "out"
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/v1")
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 
 
 @dataclass(frozen=True)
@@ -75,18 +75,24 @@ class Result:
 
 
 def call_ollama(spec: ModelSpec, prompt: str) -> tuple[str, int, int, str]:
-    from openai import OpenAI
+    """Endpoint nativo do Ollama. O endpoint compativel com OpenAI ignora `think`
+    e vaza o raciocinio do qwen3 na resposta (119 tokens para dizer "Lisboa")."""
+    import httpx
 
-    client = OpenAI(base_url=OLLAMA_URL, api_key="ollama")
-    response = client.chat.completions.create(
-        model=spec.name,
-        max_tokens=512,
-        messages=[{"role": "user", "content": prompt}],
-        extra_body={"think": False},  # qwen3 tem modo de raciocinio; desligado para comparar justo
+    response = httpx.post(
+        f"{OLLAMA_URL}/api/chat",
+        json={
+            "model": spec.name,
+            "messages": [{"role": "user", "content": prompt}],
+            "think": False,
+            "stream": False,
+            "options": {"num_predict": 512},
+        },
+        timeout=300,
     )
-    choice = response.choices[0]
-    usage = response.usage
-    return choice.message.content or "", usage.prompt_tokens, usage.completion_tokens, choice.finish_reason
+    response.raise_for_status()
+    data = response.json()
+    return data["message"]["content"], data["prompt_eval_count"], data["eval_count"], data["done_reason"]
 
 
 def call_anthropic(spec: ModelSpec, prompt: str) -> tuple[str, int, int, str]:
