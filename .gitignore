@@ -3,3 +3,5 @@
 __pycache__/
 *.pyc
 l*/out/*.csv
+cc_local/out/*.csv
+cc_local/out/*.log
