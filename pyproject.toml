@@ -1,0 +1,19 @@
+[project]
+name = "ai-engineer-labs"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Arthur Masera Berquo", email = "e-aberquo@tap.pt" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.4.0",
+    "python-dotenv>=1.2.3",
+]
+
+[project.scripts]
+ai-engineer-labs = "ai_engineer_labs:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
