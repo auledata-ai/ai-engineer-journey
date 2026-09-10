@@ -8,3 +8,4 @@ Diário de transição de Data Engineer para AI Engineer: roadmap, labs de funda
 - `l*_*/`: código de cada lab (uv + Python 3.12).
 
 Os projetos de portfólio vivem em repositórios próprios nesta organização.
+- [de_bench/](de_bench/): benchmark de tarefas de engenharia de dados com verificação por execução. Scores em [de_bench/out/scores.md](de_bench/out/scores.md).

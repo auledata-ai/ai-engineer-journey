@@ -8,7 +8,12 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=1.4.0",
+    "duckdb>=1.5.5",
+    "httpx>=0.28.1",
+    "openai>=3.11.0",
+    "pandas>=3.0.5",
     "python-dotenv>=1.2.3",
+    "pyyaml>=6.0.3",
 ]
 
 [project.scripts]
@@ -17,3 +22,8 @@ ai-engineer-labs = "ai_engineer_labs:main"
 [build-system]
 requires = ["uv_build>=0.12.3,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

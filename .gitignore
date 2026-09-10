@@ -3,3 +3,5 @@
 __pycache__/
 *.pyc
 l*/out/*.csv
+.pytest_cache/
+de_bench/out/runs.csv
