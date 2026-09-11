@@ -18,6 +18,7 @@ MODELS = [
     # Precos USD/1M tokens, docs Anthropic set/2026. Ativos apenas com ANTHROPIC_API_KEY.
     ModelSpec("claude-haiku-4-5", "claude-haiku-4-5", "anthropic", 1.00, 5.00),
     ModelSpec("claude-sonnet-5", "claude-sonnet-5", "anthropic", 2.00, 10.00),
+    ModelSpec("claude-opus-5", "claude-opus-5", "anthropic", 5.00, 25.00),
 ]
 
 
