@@ -5,3 +5,6 @@ __pycache__/
 l*/out/*.csv
 .pytest_cache/
 de_bench/out/runs.csv
+gen_review/out/*.csv
+gen_review/out/*.log
+de_bench/out/*.log
