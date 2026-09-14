@@ -45,6 +45,15 @@ class Review(BaseModel):
 
 SCHEMA = Review.model_json_schema()
 
+# Para o prompt, um exemplo de instancia funciona melhor que o schema cru: modelos pequenos
+# devolvem o proprio schema quando veem "$defs" e "properties" (visto com llama3.1).
+EXAMPLE = json.dumps({"verdict": "reject", "confidence": 0.8,
+                      "issues": [{"severity": "high", "description": "GROUP BY faltando"}],
+                      "fixed_code": "SELECT 1"})
+PROMPT_FORMAT = ("Responda APENAS com um JSON com as chaves: verdict (approve|reject), confidence (numero de 0 a 1), "
+                 "issues (lista de objetos com severity low|medium|high e description) e fixed_code (string ou null).\n"
+                 f"Exemplo:\n{EXAMPLE}")
+
 SYSTEM = "Voce e um revisor de codigo SQL. Avalie a solucao e responda no formato pedido."
 
 # Inputs escolhidos para provocar falha: codigo com aspas, chaves, comentarios, unicode, vazio.
@@ -114,7 +123,7 @@ def extract_json(text: str) -> str:
 
 
 def strategy_prompt(provider: str, model: str, code: str) -> tuple[bool, bool, int, str]:
-    prompt = f"Revise este SQL e responda APENAS com JSON no formato:\n{json.dumps(SCHEMA)}\n\nSQL:\n{code}"
+    prompt = f"Revise este SQL. {PROMPT_FORMAT}\n\nSQL:\n{code}"
     text = ollama_chat(model, SYSTEM, prompt) if provider == "ollama" else anthropic_chat(model, SYSTEM, prompt)
     try:
         Review.model_validate_json(extract_json(text))
@@ -124,7 +133,7 @@ def strategy_prompt(provider: str, model: str, code: str) -> tuple[bool, bool, i
 
 
 def strategy_retry(provider: str, model: str, code: str, max_retries: int = 2) -> tuple[bool, bool, int, str]:
-    prompt = f"Revise este SQL e responda APENAS com JSON no formato:\n{json.dumps(SCHEMA)}\n\nSQL:\n{code}"
+    prompt = f"Revise este SQL. {PROMPT_FORMAT}\n\nSQL:\n{code}"
     first_ok, err = False, ""
     for attempt in range(1, max_retries + 2):
         text = ollama_chat(model, SYSTEM, prompt) if provider == "ollama" else anthropic_chat(model, SYSTEM, prompt)
