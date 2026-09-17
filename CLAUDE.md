@@ -31,7 +31,17 @@ Ao final de **todo** trabalho significativo, atualize:
 
 O critério: um agente novo, sem histórico de conversa, deve conseguir ler este arquivo e continuar o trabalho.
 
-### 2.2 Reformular o prompt antes de executar
+### 2.2 Labs são ativos, não passivos
+Ler conclusão pronta não ensina. Todo lab segue o template `LAB_TEMPLATE.md`:
+
+1. **Conceito em 5 linhas** — o mínimo para formar um palpite.
+2. **Previsão** — o Arthur escreve o palpite ANTES de rodar qualquer coisa.
+3. **Mão na massa** — 1 ou 2 funções centrais ficam como `NotImplementedError` com teste pronto. Ele implementa.
+4. **O Arthur roda os comandos.** O Claude entrega código e explicação. Nada de experimento rodando em segundo plano sem ele ver.
+5. **Ele explica com as próprias palavras.** O Claude só corrige e acrescenta o que ele não derivaria sozinho.
+6. **Artefato visual interativo** quando o conceito for abstrato (vetores, cortes, custo). Publicado, vira peça de portfólio.
+
+### 2.3 Reformular o prompt antes de executar
 Todo pedido do Arthur deve ser **reformulado como um profissional da área escreveria**, e
 **mostrado a ele para revisão antes de executar**. O formato:
 
@@ -89,6 +99,7 @@ Ollama: usar o endpoint **nativo** `/api/chat`, não o compatível com OpenAI. O
 | item | resultado | lição em |
 |---|---|---|
 | **L1** API, tokens, custo | raciocínio oculto custa 12x tokens e 9x latência | `knowledge/L1-api-tokens-custo.md` |
+| **L3** embeddings e chunking | em andamento, formato ativo | `l3_embeddings_chunking/LAB.md` |
 | **L2** structured outputs | exemplo vence schema no prompt; gramática não valida intervalo | `knowledge/L2-structured-outputs.md` |
 | **DE-Bench** 11 tarefas, 6 modelos | Haiku 100% por $0,008; 8B local 82% | `knowledge/DE-bench-v1.md` |
 | **Gerador+revisor** 4 pares | nenhum revisor melhorou; revisor fraco derrubou 9/11 para 5/11 | `knowledge/gen-review-v1.md` |
@@ -99,7 +110,6 @@ Ollama: usar o endpoint **nativo** `/api/chat`, não o compatível com OpenAI. O
   o Ollama leva minutos por turno e retorna 500. Registrado como resultado negativo, que já vale para o portfólio.
 
 ### Pendências operacionais
-- PR #3 (L2) aberto, aguardando merge.
 - A chave da Anthropic passou pelo chat e **deve ser rotacionada** no console.
 - Xcode.app ainda ocupa 3,7 GB e precisa de `sudo rm -rf` para sair.
 
@@ -107,7 +117,9 @@ Ollama: usar o endpoint **nativo** `/api/chat`, não o compatível com OpenAI. O
 
 ## 6. Próximos passos
 
-1. **L3 — embeddings e chunking**: comparar estratégias de corte e medir recall@k. Base do RAG.
+1. **L3 — embeddings e chunking** *(em andamento)*: `l3_embeddings_chunking/LAB.md`. Arthur preenche a previsão,
+   implementa `cosine_similarity` e `fixed_size`, roda os testes e o experimento. Depois o Claude monta o artefato
+   interativo a partir de `out/viz.json`.
 2. **L4 — prompting e primeiro eval**: golden set de 20 casos com score automático.
 3. **L5 — async, batching e cache**: controlar concorrência e custo.
 4. Primeiro projeto de portfólio em repo próprio: **prompt-ops** (versionamento + eval em CI + A/B).

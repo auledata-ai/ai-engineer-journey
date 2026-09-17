@@ -7,7 +7,7 @@ Projeto ativo: **L3 - Embeddings e chunking**
 ## Nível 0
 - [x] L1 API + tokens + custo (rodado com Qwen3 8B local; lições em knowledge/L1-api-tokens-custo.md)
 - [x] L2 Structured outputs (3 estratégias x 3 modelos; knowledge/L2-structured-outputs.md)
-- [ ] L3 Embeddings + chunking
+- [~] L3 Embeddings + chunking (lab escrito, aguardando Arthur preencher previsão e rodar)
 - [ ] L4 Prompting + primeiro eval
 - [ ] L5 Async + batching + cache
 
@@ -26,3 +26,4 @@ Projeto ativo: **L3 - Embeddings e chunking**
 - 2026-09-11: gen-review concluído: nenhum revisor melhorou o acerto. Claude Code + Qwen3-Coder inviável em tempo. Próximo: L2 structured outputs.
 - 2026-09-14: L2 concluído. Lições: exemplo > schema no prompt para modelo pequeno; gramática não valida intervalo. Próximo: L3.
 - 2026-09-16: adotadas duas práticas: gravar o andamento em CLAUDE.md a cada sessão, e reformular todo prompt para revisão antes de executar. CLAUDE.md criado. Próximo: L3.
+- 2026-09-17: labs redesenhados para aprendizado ativo (prever, implementar, rodar, explicar). L3 escrito com corpus do próprio repo e 15 perguntas com gabarito por trecho. Próximo: Arthur preenche a previsão e roda os testes.
