@@ -2,6 +2,7 @@
 
 Diário de transição de Data Engineer para AI Engineer: roadmap, labs de fundamentos e base de conhecimento.
 
+- [CLAUDE.md](CLAUDE.md): contexto do projeto para qualquer agente ou pessoa que chegar agora.
 - [ROADMAP.md](ROADMAP.md): trilha completa, do fundamento ao capstone.
 - [PROGRESS.md](PROGRESS.md): o que está ativo e o diário de sessões.
 - [knowledge/](knowledge/): uma lição por lab, escrita para reler antes de entrevista.

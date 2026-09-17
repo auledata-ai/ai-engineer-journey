@@ -1,5 +1,7 @@
 # Progresso
 
+> Contexto completo do projeto: [CLAUDE.md](CLAUDE.md). Atualize os dois ao fim de cada sessão.
+
 Projeto ativo: **L3 - Embeddings e chunking**
 
 ## Nível 0
@@ -23,3 +25,4 @@ Projeto ativo: **L3 - Embeddings e chunking**
 - 2026-09-10: DE-Bench v1 rodado. qwen3 82%, qwen3+think 91%, llama 82%. Bug no eval encontrado e corrigido. Disco cheio (backups iPhone), Xcode limpo. Próximo: PR do de-bench, depois L2.
 - 2026-09-11: gen-review concluído: nenhum revisor melhorou o acerto. Claude Code + Qwen3-Coder inviável em tempo. Próximo: L2 structured outputs.
 - 2026-09-14: L2 concluído. Lições: exemplo > schema no prompt para modelo pequeno; gramática não valida intervalo. Próximo: L3.
+- 2026-09-16: adotadas duas práticas: gravar o andamento em CLAUDE.md a cada sessão, e reformular todo prompt para revisão antes de executar. CLAUDE.md criado. Próximo: L3.
