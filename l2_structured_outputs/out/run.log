@@ -1,0 +1,103 @@
+qwen3:8b         A_prompt        simples     first=ok final=ok tries=1   8335ms 
+qwen3:8b         A_prompt        aspas       first=X  final=X  tries=1   2885ms ValidationError
+qwen3:8b         A_prompt        chaves      first=ok final=ok tries=1    862ms 
+qwen3:8b         A_prompt        comentario  first=ok final=ok tries=1    868ms 
+qwen3:8b         A_prompt        unicode     first=ok final=ok tries=1    796ms 
+qwen3:8b         A_prompt        vazio       first=ok final=ok tries=1   1346ms 
+qwen3:8b         A_prompt        longo       first=ok final=ok tries=1  12786ms 
+qwen3:8b         A_prompt        multilinha  first=ok final=ok tries=1    857ms 
+qwen3:8b         A_prompt        injecao     first=ok final=ok tries=1    915ms 
+qwen3:8b         A_prompt        errado      first=ok final=ok tries=1   2877ms 
+qwen3:8b         B_prompt_retry  simples     first=ok final=ok tries=1   1952ms 
+qwen3:8b         B_prompt_retry  aspas       first=X  final=X  tries=3   9490ms 1 validation error for Review
+  Invalid 
+qwen3:8b         B_prompt_retry  chaves      first=ok final=ok tries=1    863ms 
+qwen3:8b         B_prompt_retry  comentario  first=ok final=ok tries=1    872ms 
+qwen3:8b         B_prompt_retry  unicode     first=ok final=ok tries=1    788ms 
+qwen3:8b         B_prompt_retry  vazio       first=ok final=ok tries=1   1334ms 
+qwen3:8b         B_prompt_retry  longo       first=ok final=ok tries=1  12697ms 
+qwen3:8b         B_prompt_retry  multilinha  first=ok final=ok tries=1    860ms 
+qwen3:8b         B_prompt_retry  injecao     first=ok final=ok tries=1    936ms 
+qwen3:8b         B_prompt_retry  errado      first=ok final=ok tries=1   2889ms 
+qwen3:8b         C_schema        simples     first=ok final=ok tries=1   4065ms 
+qwen3:8b         C_schema        aspas       first=ok final=ok tries=1   1704ms 
+qwen3:8b         C_schema        chaves      first=ok final=ok tries=1   1261ms 
+qwen3:8b         C_schema        comentario  first=ok final=ok tries=1   4600ms 
+qwen3:8b         C_schema        unicode     first=ok final=ok tries=1   1545ms 
+qwen3:8b         C_schema        vazio       first=ok final=ok tries=1   1842ms 
+qwen3:8b         C_schema        longo       first=ok final=ok tries=1   6044ms 
+qwen3:8b         C_schema        multilinha  first=ok final=ok tries=1   1601ms 
+qwen3:8b         C_schema        injecao     first=ok final=ok tries=1   2572ms 
+qwen3:8b         C_schema        errado      first=ok final=ok tries=1   3089ms 
+llama3.1:8b      A_prompt        simples     first=ok final=ok tries=1  10746ms 
+llama3.1:8b      A_prompt        aspas       first=ok final=ok tries=1   2175ms 
+llama3.1:8b      A_prompt        chaves      first=ok final=ok tries=1    991ms 
+llama3.1:8b      A_prompt        comentario  first=ok final=ok tries=1   1009ms 
+llama3.1:8b      A_prompt        unicode     first=ok final=ok tries=1   1250ms 
+llama3.1:8b      A_prompt        vazio       first=ok final=ok tries=1   1417ms 
+llama3.1:8b      A_prompt        longo       first=ok final=ok tries=1   2581ms 
+llama3.1:8b      A_prompt        multilinha  first=ok final=ok tries=1   1341ms 
+llama3.1:8b      A_prompt        injecao     first=ok final=ok tries=1   1122ms 
+llama3.1:8b      A_prompt        errado      first=ok final=ok tries=1   1330ms 
+llama3.1:8b      B_prompt_retry  simples     first=ok final=ok tries=1    743ms 
+llama3.1:8b      B_prompt_retry  aspas       first=ok final=ok tries=1   2094ms 
+llama3.1:8b      B_prompt_retry  chaves      first=ok final=ok tries=1    981ms 
+llama3.1:8b      B_prompt_retry  comentario  first=ok final=ok tries=1   1019ms 
+llama3.1:8b      B_prompt_retry  unicode     first=ok final=ok tries=1   1199ms 
+llama3.1:8b      B_prompt_retry  vazio       first=ok final=ok tries=1   1391ms 
+llama3.1:8b      B_prompt_retry  longo       first=ok final=ok tries=1   2598ms 
+llama3.1:8b      B_prompt_retry  multilinha  first=ok final=ok tries=1   1291ms 
+llama3.1:8b      B_prompt_retry  injecao     first=ok final=ok tries=1   1090ms 
+llama3.1:8b      B_prompt_retry  errado      first=ok final=ok tries=1   1309ms 
+llama3.1:8b      C_schema        simples     first=X  final=X  tries=1    753ms ValidationError
+llama3.1:8b      C_schema        aspas       first=ok final=ok tries=1   3478ms 
+llama3.1:8b      C_schema        chaves      first=ok final=ok tries=1   3418ms 
+llama3.1:8b      C_schema        comentario  first=X  final=X  tries=1    735ms ValidationError
+llama3.1:8b      C_schema        unicode     first=ok final=ok tries=1   2997ms 
+llama3.1:8b      C_schema        vazio       first=ok final=ok tries=1   2189ms 
+llama3.1:8b      C_schema        longo       first=ok final=ok tries=1   4141ms 
+llama3.1:8b      C_schema        multilinha  first=X  final=X  tries=1    771ms ValidationError
+llama3.1:8b      C_schema        injecao     first=ok final=ok tries=1   1607ms 
+llama3.1:8b      C_schema        errado      first=ok final=ok tries=1   3043ms 
+claude-haiku-4-5 A_prompt        simples     first=ok final=ok tries=1   1801ms 
+claude-haiku-4-5 A_prompt        aspas       first=ok final=ok tries=1   3756ms 
+claude-haiku-4-5 A_prompt        chaves      first=ok final=ok tries=1   1109ms 
+claude-haiku-4-5 A_prompt        comentario  first=ok final=ok tries=1   2721ms 
+claude-haiku-4-5 A_prompt        unicode     first=ok final=ok tries=1   1439ms 
+claude-haiku-4-5 A_prompt        vazio       first=ok final=ok tries=1   1387ms 
+claude-haiku-4-5 A_prompt        longo       first=ok final=ok tries=1   1543ms 
+claude-haiku-4-5 A_prompt        multilinha  first=ok final=ok tries=1   1062ms 
+claude-haiku-4-5 A_prompt        injecao     first=ok final=ok tries=1   1040ms 
+claude-haiku-4-5 A_prompt        errado      first=ok final=ok tries=1   2587ms 
+claude-haiku-4-5 B_prompt_retry  simples     first=ok final=ok tries=1   1546ms 
+claude-haiku-4-5 B_prompt_retry  aspas       first=ok final=ok tries=1   2159ms 
+claude-haiku-4-5 B_prompt_retry  chaves      first=ok final=ok tries=1   1481ms 
+claude-haiku-4-5 B_prompt_retry  comentario  first=ok final=ok tries=1   1843ms 
+claude-haiku-4-5 B_prompt_retry  unicode     first=ok final=ok tries=1    925ms 
+claude-haiku-4-5 B_prompt_retry  vazio       first=ok final=ok tries=1   1367ms 
+claude-haiku-4-5 B_prompt_retry  longo       first=ok final=ok tries=1   2500ms 
+claude-haiku-4-5 B_prompt_retry  multilinha  first=ok final=ok tries=1   1576ms 
+claude-haiku-4-5 B_prompt_retry  injecao     first=ok final=ok tries=1   1510ms 
+claude-haiku-4-5 B_prompt_retry  errado      first=ok final=ok tries=1   1816ms 
+claude-haiku-4-5 C_schema        simples     first=ok final=ok tries=1   3425ms 
+claude-haiku-4-5 C_schema        aspas       first=ok final=ok tries=1   2616ms 
+claude-haiku-4-5 C_schema        chaves      first=ok final=ok tries=1   2178ms 
+claude-haiku-4-5 C_schema        comentario  first=ok final=ok tries=1   3131ms 
+claude-haiku-4-5 C_schema        unicode     first=ok final=ok tries=1   1925ms 
+claude-haiku-4-5 C_schema        vazio       first=ok final=ok tries=1   3565ms 
+claude-haiku-4-5 C_schema        longo       first=ok final=ok tries=1   3748ms 
+claude-haiku-4-5 C_schema        multilinha  first=ok final=ok tries=1   1231ms 
+claude-haiku-4-5 C_schema        injecao     first=ok final=ok tries=1   1958ms 
+claude-haiku-4-5 C_schema        errado      first=ok final=ok tries=1   3296ms 
+
+| modelo | estrategia | valido 1a tentativa | valido final | tentativas medias | latencia media |
+|---|---|---|---|---|---|
+| qwen3:8b | A_prompt | 9/10 | 9/10 | 1.0 | 3253ms |
+| qwen3:8b | B_prompt_retry | 9/10 | 9/10 | 1.2 | 3268ms |
+| qwen3:8b | C_schema | 10/10 | 10/10 | 1.0 | 2832ms |
+| llama3.1:8b | A_prompt | 10/10 | 10/10 | 1.0 | 2396ms |
+| llama3.1:8b | B_prompt_retry | 10/10 | 10/10 | 1.0 | 1372ms |
+| llama3.1:8b | C_schema | 7/10 | 7/10 | 1.0 | 2313ms |
+| claude-haiku-4-5 | A_prompt | 10/10 | 10/10 | 1.0 | 1844ms |
+| claude-haiku-4-5 | B_prompt_retry | 10/10 | 10/10 | 1.0 | 1672ms |
+| claude-haiku-4-5 | C_schema | 10/10 | 10/10 | 1.0 | 2707ms |
